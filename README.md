@@ -13,4 +13,4 @@ A command-line calculator with advanced mathematical features
 ![GitHub last commit](https://img.shields.io/github/last-commit/YukariMoe2024/Calculator)
 ![GitHub Created At](https://img.shields.io/github/created-at/YukariMoe2024/Calculator) 
 
-</dev>
+</div>
