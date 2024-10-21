@@ -7,6 +7,7 @@
 #include <cmath>
 
 #include "include/calc.hpp"
+#include "include/atomicMass.hpp"
 
 std::map<std::string, double> variables;
 
@@ -152,6 +153,8 @@ int main() {
                 std::string varName;
                 iss >> varName;
                 handleDelCommand(varName);
+            } else if (command == "ar") {
+
             } else if (command == "help") {
                 showHelp();
             } else if (command == "ver") {
