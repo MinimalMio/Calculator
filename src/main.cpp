@@ -2,7 +2,6 @@
 #include <sstream>
 #include <string>
 #include <map>
-#include <stack>
 #include <stdexcept>
 #include <cctype>
 #include <cmath>
@@ -41,12 +40,12 @@ double evaluateExpression(std::istringstream &iss) {
 }
 
 double evaluateTerm(std::istringstream &iss) {
-    double result = evaluateFactor(iss);
+    double result = evaluatePower(iss);
     while (iss) {
         char op;
         iss >> op;
         if (op == '*' || op == '/') {
-            double nextFactor = evaluateFactor(iss);
+            double nextFactor = evaluatePower(iss);
             if (op == '*') result *= nextFactor;
             else if (nextFactor == 0) throw std::runtime_error("Divider cannot be zero.");
             else result /= nextFactor;
@@ -60,16 +59,13 @@ double evaluateTerm(std::istringstream &iss) {
 
 double evaluatePower(std::istringstream &iss) {
     double result = evaluateFactor(iss);
-    while (iss) {
-        char op;
-        iss >> op;
-        if (op == '^') {
-            double exponent = evaluateFactor(iss);
-            result = pow(result, exponent);
-        } else {
-            iss.putback(op);
-            break;
-        }
+    char op;
+    iss >> op;
+    if (op == '^') {
+        double exponent = evaluatePower(iss);
+        result = pow(result, exponent);
+    } else {
+        iss.putback(op); // if it not '^' put it back
     }
     return result;
 }
@@ -129,8 +125,8 @@ void showHelp() {
     std::cout << "show: print value of a variable" << std::endl;
     std::cout << "del : del a variable" << std::endl;
     std::cout << "help: show this message" << std::endl;
-    std::cout << "ver : display version" << std::endl;
-    std::cout << "exit: exit\n";
+    std::cout << "ver : show version" << std::endl;
+    std::cout << "exit: exit" << std::endl;
 }
 
 void showVersion() {
