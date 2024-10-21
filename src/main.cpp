@@ -19,6 +19,8 @@ double evaluateExpression(std::istringstream &iss);
 
 double evaluateTerm(std::istringstream &iss);
 
+double evaluatePower(std::istringstream &iss);
+
 double evaluateFactor(std::istringstream &iss);
 
 double evaluateExpression(std::istringstream &iss) {
@@ -48,6 +50,22 @@ double evaluateTerm(std::istringstream &iss) {
             if (op == '*') result *= nextFactor;
             else if (nextFactor == 0) throw std::runtime_error("Divider cannot be zero.");
             else result /= nextFactor;
+        } else {
+            iss.putback(op);
+            break;
+        }
+    }
+    return result;
+}
+
+double evaluatePower(std::istringstream &iss) {
+    double result = evaluateFactor(iss);
+    while (iss) {
+        char op;
+        iss >> op;
+        if (op == '^') {
+            double exponent = evaluateFactor(iss);
+            result = pow(result, exponent);
         } else {
             iss.putback(op);
             break;
