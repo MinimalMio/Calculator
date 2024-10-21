@@ -8,6 +8,7 @@
 
 #include "include/calc.hpp"
 #include "include/atomicMass.hpp"
+#include "include/scriptExec.hpp"
 
 std::map<std::string, double> variables;
 
@@ -132,6 +133,7 @@ void showHelp() {
     std::cout << "del   : del a variable" << std::endl;
     std::cout << "ar    : calculate relative molecular mass" << std::endl;
     std::cout << "rect  : calculate the diagonal of a square" << std::endl;
+    std::cout << "exec  : execute a script" << std::endl;
     std::cout << "help  : show this message" << std::endl;
     std::cout << "ver   : show version" << std::endl;
     std::cout << "exit  : exit" << std::endl;
@@ -168,6 +170,10 @@ int main() {
                 double sideLength;
                 iss >> sideLength;
                 handleRectCommand(sideLength);
+            } else if (command == "exec") {
+                std::string filePath;
+                iss >> filePath;
+                handleExecCommand(filePath);
             } else if (command == "help") {
                 showHelp();
             } else if (command == "ver") {
