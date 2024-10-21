@@ -35,7 +35,7 @@ jobs:
 
       - name: Rename binary with architecture and version
         run: |
-          VERSION=$(grep -Po '(?<=VERSION )\d+\.\d+\.\d+' ../CMakeLists.txt)
+          VERSION=$(grep -Po '(?<=VERSION )\d+\.\d+\.\d+' CMakeLists.txt)
           mv build/calculator "calculator-${{ matrix.arch }}-${VERSION}"
 
       - name: Archive binaries
