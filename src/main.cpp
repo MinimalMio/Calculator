@@ -122,12 +122,13 @@ void handleDelCommand(const std::string &varName) {
 
 void showHelp() {
     std::cout << "Calculator v" << version << std::endl;
-    std::cout << "let : define a variable" << std::endl;
-    std::cout << "show: print value of a variable" << std::endl;
-    std::cout << "del : del a variable" << std::endl;
-    std::cout << "help: show this message" << std::endl;
-    std::cout << "ver : show version" << std::endl;
-    std::cout << "exit: exit" << std::endl;
+    std::cout << "let   : define a variable" << std::endl;
+    std::cout << "show  : print value of a variable" << std::endl;
+    std::cout << "del   : del a variable" << std::endl;
+    std::cout << "ar    : calculate relative molecular mass" << std::endl;
+    std::cout << "help  : show this message" << std::endl;
+    std::cout << "ver   : show version" << std::endl;
+    std::cout << "exit  : exit" << std::endl;
 }
 
 void showVersion() {
@@ -154,7 +155,9 @@ int main() {
                 iss >> varName;
                 handleDelCommand(varName);
             } else if (command == "ar") {
-
+                std::string formula;
+                iss >> formula;
+                handleArCommand(formula);
             } else if (command == "help") {
                 showHelp();
             } else if (command == "ver") {
