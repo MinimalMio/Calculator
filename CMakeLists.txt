@@ -4,4 +4,4 @@ project(Calculator VERSION 1.0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 11)
 add_definitions("-Wall -g")
 
-add_executable(main.out src/main.cpp)
+add_executable(calculator src/main.cpp)
