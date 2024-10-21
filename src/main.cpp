@@ -120,12 +120,18 @@ void handleDelCommand(const std::string &varName) {
     }
 }
 
+void handleRectCommand(double sideLength) {
+    double diagonal = sqrt(2) * sideLength;
+    std::cout << diagonal << std::endl;
+}
+
 void showHelp() {
     std::cout << "Calculator v" << version << std::endl;
     std::cout << "let   : define a variable" << std::endl;
     std::cout << "show  : print value of a variable" << std::endl;
     std::cout << "del   : del a variable" << std::endl;
     std::cout << "ar    : calculate relative molecular mass" << std::endl;
+    std::cout << "rect  : calculate the diagonal of a square" << std::endl;
     std::cout << "help  : show this message" << std::endl;
     std::cout << "ver   : show version" << std::endl;
     std::cout << "exit  : exit" << std::endl;
@@ -158,6 +164,10 @@ int main() {
                 std::string formula;
                 iss >> formula;
                 handleArCommand(formula);
+            } else if (command == "rect") {
+                double sideLength;
+                iss >> sideLength;
+                handleRectCommand(sideLength);
             } else if (command == "help") {
                 showHelp();
             } else if (command == "ver") {
