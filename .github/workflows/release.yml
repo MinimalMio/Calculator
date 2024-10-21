@@ -1,0 +1,62 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - '*release*'  # 只在带有 "release" 字样的 tag 触发
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        arch: [x86_64, arm64]
+        
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up CMake
+        uses: actions/setup-cmake@v3
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install g++ make cmake
+
+      - name: Create build directory
+        run: mkdir build
+
+      - name: Configure and Build
+        run: |
+          cd build
+          cmake ..
+          make
+
+      - name: Rename binary with architecture and version
+        run: |
+          VERSION=$(grep -Po '(?<=VERSION )\d+\.\d+\.\d+' ../CMakeLists.txt)
+          mv build/calculator "calculator-${{ matrix.arch }}-${VERSION}"
+
+      - name: Archive binaries
+        uses: actions/upload-artifact@v3
+        with:
+          name: calculator-${{ matrix.arch }}-${VERSION}
+          path: ./build/calculator-${{ matrix.arch }}-${VERSION}
+
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download binaries
+        uses: actions/download-artifact@v3
+        with:
+          name: calculator-${{ matrix.arch }}-${VERSION}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            build/calculator-x86_64-*
+            build/calculator-arm64-*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
