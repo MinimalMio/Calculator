@@ -131,7 +131,8 @@ void showHelp() {
     std::cout << "let   : define a variable" << std::endl;
     std::cout << "show  : print value of a variable" << std::endl;
     std::cout << "del   : del a variable" << std::endl;
-    std::cout << "ar    : calculate relative molecular mass" << std::endl;
+    std::cout << "ar    : calculate relative atomic mass" << std::endl;
+    std::cout << "mr    : calculate relative molecular mass" << std::endl;
     std::cout << "rect  : calculate the diagonal of a square" << std::endl;
     std::cout << "exec  : execute a script" << std::endl;
     std::cout << "help  : show this message" << std::endl;
@@ -166,6 +167,10 @@ int main() {
                 std::string formula;
                 iss >> formula;
                 handleArCommand(formula);
+            } else if (command == "mr") {
+                std::string formula;
+                iss >> formula;
+                handleMrCommand(formula);
             } else if (command == "rect") {
                 double sideLength;
                 iss >> sideLength;

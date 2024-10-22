@@ -33,7 +33,16 @@ static std::map<std::string, double> atomicMass = {
     {"Ts", 294.0}, {"Og", 294.0}
 };
 
-void handleArCommand(const std::string &formula) {
+void handleArCommand(const std::string &element) {
+    auto it = atomicMass.find(element);
+    if (it != atomicMass.end()) {
+        std::cout << it->second << std::endl;
+    } else {
+        throw std::runtime_error("Unknown element: " + element);
+    }
+}
+
+void handleMrCommand(const std::string &formula) {
     double totalMass = 0;
     std::string element;
     int count = 0;

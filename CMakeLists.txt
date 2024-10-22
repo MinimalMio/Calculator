@@ -5,3 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 add_definitions("-Wall -g")
 
 add_executable(calculator src/main.cpp)
+
+install(TARGETS calculator
+    RUNTIME DESTINATION bin
+)
