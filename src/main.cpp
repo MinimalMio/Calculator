@@ -10,6 +10,7 @@
 #include "include/atomicMass.hpp"
 #include "include/scriptExec.hpp"
 #include "include/basicMath.hpp"
+#include "include/evalComparison.hpp"
 
 std::map<std::string, double> variables;
 
@@ -108,10 +109,21 @@ int main() {
             } else if (command == "exit") {
                 break;
             } else {
-                iss.clear();
-                iss.str(line);
-                double result = evaluateExpression(iss);
-                std::cout << result << std::endl;
+                if (line.find("==") != std::string::npos ||
+                    line.find("<<") != std::string::npos ||
+                    line.find(">>") != std::string::npos ||
+                    line.find("<=") != std::string::npos ||
+                    line.find(">=") != std::string::npos) {
+                    iss.clear();
+                    iss.str(line);
+                    std::string result = evaluateComparison(iss);
+                    std::cout << result << std::endl;
+                } else {
+                    iss.clear();
+                    iss.str(line);
+                    double result = evaluateExpression(iss);
+                    std::cout << result << std::endl;
+                }
             }
         } catch (std::exception &e) {
             error(e.what());
