@@ -4,11 +4,17 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <stdexcept>
+
+#include "parseOperand.hpp"
 
 inline std::string evaluateComparison(std::istringstream &iss) {
-    double left, right;
+    std::string leftStr, rightStr;
     std::string op;
-    iss >> left >> op >> right;
+    iss >> leftStr >> op >> rightStr;
+
+    double left = parseOperand(leftStr);
+    double right = parseOperand(rightStr);
 
     if (op == "==") {
         return (left == right) ? "true" : "false";
