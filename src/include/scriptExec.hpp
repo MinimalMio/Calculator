@@ -9,6 +9,7 @@
 #include <map>
 
 #include "atomicMass.hpp"
+#include "evalComparison.hpp"
 
 extern std::map<std::string, double> variables;
 
@@ -52,11 +53,26 @@ static void handleExecCommand(const std::string &filePath) {
                 double sideLength;
                 iss >> sideLength;
                 handleRectCommand(sideLength);
+            } else if (command == "println") {
+                std::string printChar;
+                iss >> printChar;
+                std::cout << printChar << std::endl;
             } else {
-                iss.clear();
-                iss.str(line);
-                double result = evaluateExpression(iss);
-                std::cout << result << std::endl;
+                if (line.find("==") != std::string::npos ||
+                    line.find("<<") != std::string::npos ||
+                    line.find(">>") != std::string::npos ||
+                    line.find("<=") != std::string::npos ||
+                    line.find(">=") != std::string::npos) {
+                    iss.clear();
+                    iss.str(line);
+                    std::string result = evaluateComparison(iss);
+                    std::cout << result << std::endl;
+                } else {
+                    iss.clear();
+                    iss.str(line);
+                    double result = evaluateExpression(iss);
+                    std::cout << result << std::endl;
+                }
             }
         } catch (std::exception &e) {
             error(e.what());
