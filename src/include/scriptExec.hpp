@@ -20,7 +20,7 @@ void handleRectCommand(double sideLength);
 double evaluateExpression(std::istringstream &iss);
 void error(const std::string &msg);
 
-void handleExecCommand(const std::string &filePath) {
+static void handleExecCommand(const std::string &filePath) {
     std::ifstream file(filePath);
     if (!file.is_open()) {
         error("Could not open file: " + filePath);

@@ -19,7 +19,7 @@ double evaluatePower(std::istringstream &iss);
 
 double evaluateFactor(std::istringstream &iss);
 
-double evaluateExpression(std::istringstream &iss) {
+inline double evaluateExpression(std::istringstream &iss) {
     double result = evaluateTerm(iss);
     while (iss) {
         char op;
@@ -36,7 +36,7 @@ double evaluateExpression(std::istringstream &iss) {
     return result;
 }
 
-double evaluateTerm(std::istringstream &iss) {
+inline double evaluateTerm(std::istringstream &iss) {
     double result = evaluatePower(iss);
     while (iss) {
         char op;
@@ -54,7 +54,7 @@ double evaluateTerm(std::istringstream &iss) {
     return result;
 }
 
-double evaluatePower(std::istringstream &iss) {
+inline double evaluatePower(std::istringstream &iss) {
     double result = evaluateFactor(iss);
     char op;
     iss >> op;
@@ -67,7 +67,7 @@ double evaluatePower(std::istringstream &iss) {
     return result;
 }
 
-double evaluateFactor(std::istringstream &iss) {
+inline double evaluateFactor(std::istringstream &iss) {
     double result;
     char c;
     iss >> c;
