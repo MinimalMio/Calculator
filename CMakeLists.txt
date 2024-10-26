@@ -4,9 +4,9 @@ project(Calculator VERSION 1.1.1)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_definitions("-g -Wall -Werror -lcurses")
+add_definitions("-g -Wall -Werror -lncurses")
 
-find_package(CURSES REQUIRED)
+find_package(Curses REQUIRED)
 
 add_executable(calculator src/main.cpp)
 
