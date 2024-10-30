@@ -28,9 +28,9 @@ You can type `help` for more information.
 
 ## How to build
 
-You need CMake 3.10+ ,GNUMake and G++ Compiler for build this project.
+You need CMake 3.10+ ,Ninja and G++ Compiler for build this project.
 
 ```Bash
 mkdir build && cd build
-cmake .. && make && make install
+cmake .. && ninja
 ```

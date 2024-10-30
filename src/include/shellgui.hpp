@@ -12,11 +12,7 @@
 extern std::map<std::string, double> variables;
 
 inline void calcShell() {
-    initscr();
-    int scrX, scrY;
-    getmaxyx(stdscr, scrX, scrY);
-    mvprintw(scrX / 2, scrY / 2, "Hello!");
-    refresh();
+
 }
 
 #endif
