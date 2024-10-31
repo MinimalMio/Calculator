@@ -11,7 +11,6 @@
 #include "include/scriptExec.hpp"
 #include "include/basicMath.hpp"
 #include "include/evalComparison.hpp"
-#include "include/shellgui.hpp"
 
 std::map<std::string, double> variables;
 
@@ -103,8 +102,8 @@ int main() {
                 std::string filePath;
                 iss >> filePath;
                 handleExecCommand(filePath);
-            } else if (command == "shell") {
-                calcShell();
+            //} else if (command == "shell") {
+            //    calcShell();
             } else if (command == "help") {
                 showHelp();
             } else if (command == "ver") {
