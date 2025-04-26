@@ -1,12 +1,15 @@
 cmake_minimum_required(VERSION 3.10)
-project(Calculator VERSION 1.1.1)
+project(calculator VERSION 1.1.1)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_definitions("-g -Wall -Werror")
+include_directories(${PROJECT_NAME} PUBLIC
+    src/include
+)
 
-add_executable(calculator src/main.cpp)
+add_executable(calculator
+    src/main.cc
+)
 
 install(TARGETS calculator DESTINATION bin)
-message(STATUS "Calculator Version: ${PROJECT_VERSION}")

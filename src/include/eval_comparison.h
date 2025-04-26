@@ -6,7 +6,7 @@
 #include <sstream>
 #include <stdexcept>
 
-#include "parseOperand.hpp"
+#include "parse_operand.h"
 
 inline std::string evaluateComparison(std::istringstream &iss) {
     std::string leftStr, rightStr;

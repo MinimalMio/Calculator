@@ -6,48 +6,13 @@
 #include <cctype>
 #include <cmath>
 
-#include "include/version.hpp"
-#include "include/atomicMass.hpp"
-#include "include/scriptExec.hpp"
-#include "include/basicMath.hpp"
-#include "include/evalComparison.hpp"
-
-std::map<std::string, double> variables;
-
-void error(const std::string &msg) {
-    std::cout << "[ERR] " << msg << std::endl;
-}
-
-void handleLetCommand(const std::string &line) {
-    std::istringstream iss(line);
-    std::string command, varName, equalSign;
-    iss >> command >> varName >> equalSign;
-    if (equalSign != "=") {
-        error("Invalid let syntax");
-        return;
-    }
-    double value = evaluateExpression(iss);
-    variables[varName] = value;
-}
-
-void handleShowCommand(const std::string &varName) {
-    if (variables.find(varName) != variables.end()) {
-        std::cout << variables[varName] << std::endl;
-    } else {
-        error("Unknown variable: " + varName);
-    }
-}
-
-void handleDelCommand(const std::string &varName) {
-    if (variables.erase(varName) == 0) {
-        error("Unknown variable: " + varName);
-    }
-}
-
-void handleRectCommand(double sideLength) {
-    double diagonal = sqrt(2) * sideLength;
-    std::cout << diagonal << std::endl;
-}
+#include "version.h"
+#include "atomic_mass.h"
+#include "script_exec.h"
+#include "basic_math.h"
+#include "eval_comparison.h"
+#include "message_lib.h"
+#include "calculator.h"
 
 void showHelp() {
     std::cout << "Calculator v" << version  << std::endl;

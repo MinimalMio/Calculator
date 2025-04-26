@@ -1,6 +1,3 @@
-#ifndef SCRIPT_EXECUTOR_H
-#define SCRIPT_EXECUTOR_H
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -8,20 +5,13 @@
 #include <string>
 #include <map>
 
-#include "atomicMass.hpp"
-#include "evalComparison.hpp"
+#include "atomic_mass.h"
+#include "basic_math.h"
+#include "eval_comparison.h"
+#include "message_lib.h"
+#include "handlelib.h"
 
-extern std::map<std::string, double> variables;
-
-void handleLetCommand(const std::string &line);
-void handleShowCommand(const std::string &varName);
-void handleDelCommand(const std::string &varName);
-void handleArCommand(const std::string &formula);
-void handleRectCommand(double sideLength);
-double evaluateExpression(std::istringstream &iss);
-void error(const std::string &msg);
-
-inline void handleExecCommand(const std::string &filePath) {
+void handleExecCommand(const std::string filePath) {
     std::ifstream file(filePath);
     if (!file.is_open()) {
         error("Could not open file: " + filePath);
@@ -80,5 +70,3 @@ inline void handleExecCommand(const std::string &filePath) {
     }
     file.close();
 }
-
-#endif

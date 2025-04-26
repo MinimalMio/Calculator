@@ -1,25 +1,12 @@
-#ifndef BASIC_OPERATIONS_H
-#define BASIC_OPERATIONS_H
-
-#include <iostream>
+#include <string>
 #include <sstream>
-#include <stdexcept>
 #include <cmath>
-#include <map>
 
-extern std::map<std::string, double> variables;
+#include "basic_math.h"
+#include "atomic_mass.h"
+#include "calculator.h"
 
-void error(const std::string &msg);
-
-double evaluateExpression(std::istringstream &iss);
-
-double evaluateTerm(std::istringstream &iss);
-
-double evaluatePower(std::istringstream &iss);
-
-double evaluateFactor(std::istringstream &iss);
-
-inline double evaluateExpression(std::istringstream &iss) {
+double evaluateExpression(std::istringstream iss) {
     double result = evaluateTerm(iss);
     while (iss) {
         char op;
@@ -36,7 +23,7 @@ inline double evaluateExpression(std::istringstream &iss) {
     return result;
 }
 
-inline double evaluateTerm(std::istringstream &iss) {
+double evaluateTerm(std::istringstream iss) {
     double result = evaluatePower(iss);
     while (iss) {
         char op;
@@ -54,7 +41,7 @@ inline double evaluateTerm(std::istringstream &iss) {
     return result;
 }
 
-inline double evaluatePower(std::istringstream &iss) {
+double evaluatePower(std::istringstream iss) {
     double result = evaluateFactor(iss);
     char op;
     iss >> op;
@@ -67,7 +54,7 @@ inline double evaluatePower(std::istringstream &iss) {
     return result;
 }
 
-inline double evaluateFactor(std::istringstream &iss) {
+double evaluateFactor(std::istringstream iss) {
     double result;
     char c;
     iss >> c;
@@ -90,5 +77,3 @@ inline double evaluateFactor(std::istringstream &iss) {
     }
     return result;
 }
-
-#endif
