@@ -9,7 +9,7 @@
 
 #include "message_lib.h"
 
-extern double evaluateExpression(std::istringstream iss);
+extern double evaluateExpression(std::istringstream &iss);
 extern double evaluateTerm(std::istringstream iss);
 extern double evaluatePower(std::istringstream iss);
 extern double evaluateFactor(std::istringstream iss);

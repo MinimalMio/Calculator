@@ -67,8 +67,6 @@ int main() {
                 std::string filePath;
                 iss >> filePath;
                 handleExecCommand(filePath);
-            //} else if (command == "shell") {
-            //    calcShell();
             } else if (command == "help") {
                 showHelp();
             } else if (command == "ver") {

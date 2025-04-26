@@ -6,6 +6,8 @@
 #include "atomic_mass.h"
 #include "calculator.h"
 
+// 我认为这个函数就是一个灵车函数
+// 每次报错都肯定有它
 double evaluateExpression(std::istringstream iss) {
     double result = evaluateTerm(iss);
     while (iss) {
